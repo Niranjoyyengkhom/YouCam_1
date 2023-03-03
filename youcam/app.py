@@ -24,7 +24,7 @@ def start():
         if not stream_key:
             return jsonify({'error': 'Stream key not provided and could not be read from file.'})
     else:
-        with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
+        with open(os.path.join(base_path, "stream_key.txt"), "w") as fp:
             fp.write(stream_key)
     start_stream(stream_key)
     return jsonify({'message': 'Stream started successfully.'})
