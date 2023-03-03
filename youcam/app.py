@@ -3,6 +3,7 @@ import time
 from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
+base_path = os.path.dirname(os.path.abspath(__file__))
 
 def start_stream(stream_key):
     # Start the video stream with the given stream key
