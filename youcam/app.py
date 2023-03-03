@@ -2,7 +2,7 @@ import os
 import time
 from flask import Flask, request, jsonify, render_template
 
-app = Flask(_name_)
+app = Flask(__name__)
 base_path = os.path.dirname(os.path.abspath(_file_))
 
 def start_stream(stream_key):
