@@ -19,19 +19,19 @@ def home():
 def start():
     stream_key = request.form.get('stream_key')
     if not stream_key:
-        with open("stream_key.txt", "r") as fp:
+        with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
             stream_key = fp.read().strip()
         if not stream_key:
             return jsonify({'error': 'Stream key not provided and could not be read from file.'})
     else:
-        with open("stream_key.txt", "w") as fp:
+        with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
             fp.write(stream_key)
     start_stream(stream_key)
     return jsonify({'message': 'Stream started successfully.'})
 
 if __name__ == '__main__':
     # Check if a valid stream key is present in the file
-    with open("stream_key.txt", "r") as fp:
+    with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
         stream_key = fp.read().strip()
     if stream_key:
         # Start the stream automatically
