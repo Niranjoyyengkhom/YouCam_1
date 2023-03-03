@@ -2,8 +2,8 @@ import os
 import time
 from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__)
-base_path = os.path.dirname(os.path.abspath(__file__))
+app = Flask(_name_)
+base_path = os.path.dirname(os.path.abspath(_file_))
 
 def start_stream(stream_key):
     # Start the video stream with the given stream key
@@ -29,10 +29,15 @@ def start():
     start_stream(stream_key)
     return jsonify({'message': 'Stream started successfully.'})
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     # Check if a valid stream key is present in the file
-    with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
-        stream_key = fp.read().strip()
+    try:
+        with open(os.path.join(base_path, "stream_key.txt"), "r") as fp:
+            stream_key = fp.read().strip()
+    except FileNotFoundError:
+        with open(os.path.join(base_path, "stream_key.txt"), "w") as fp:
+            pass
+        stream_key = ""
     if stream_key:
         # Start the stream automatically
         start_stream(stream_key)
